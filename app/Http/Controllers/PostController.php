@@ -44,9 +44,8 @@ class PostController extends Controller
     {       
             $post = Post::find($id);
             $this->validate($request, [
-             // 'title' => 'required|unique:posts|max:255|unique:posts,title,' . $post->id,
-                // 'title' => 'required|title|unique:posts,title,' . $post->id,
-             'title' => 'required|unique:posts|max:255',
+          // 'title' => 'required|max:255|unique:posts,title,' . $post->id,
+             'title' => 'required|unique:posts|max:255|unique:posts,title,'. $post->id,
             'description' => 'required',
              ]);
         

@@ -4,11 +4,11 @@
          <div class="col-md-12">
          <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Complete  VueJs Post Crud</h3>
+                <h3 class="card-title">VueJs Post Crud</h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <button class="form-control float-right" v-on:click="showmodal"> Add Record</button>
+                    <button class="form-control float-right" v-on:click="showmodal"> Add Post</button>
 
                     
                   </div>
@@ -29,10 +29,10 @@
                   <tbody>
                     <tr v-for="post in posts" :key="post.id">
                       <td>{{post.id}}</td>
-                      <td>{{post.title}}</td>
-                      <td>{{post.description | uppertext}}</td>
+                      <td>{{post.title.substring(0,15)+"...." }}</td>
+                      <td>{{post.description.substring(0,25)+"...." | uppertext}}</td>
                       <td><span class="tag tag-success">{{post.created_at | date}}</span></td>
-                      <td><a href="#" v-on:click ="edit(post)" ><i class="fas fa-edit"></i></a> / <a href="#" v-on:click ="deletePost(post.id)"><i class="fas fa-trash-alt"></i></a></td>
+                      <td><a href="#" v-on:click ="edit(post)" ><i class="fas fa-edit"></i></a>  <a href="#" v-on:click ="deletePost(post.id)"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>
                     
                   </tbody>
@@ -43,7 +43,7 @@
                     <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 v-show="!editmode" class="modal-title" id="exampleModalLabel">Create Post</h5>
+                        <h5 v-show="!editmode" class="modal-title" id="exampleModalLabel">Add Post</h5>
                         <h5 v-show="editmode" class="modal-title" id="exampleModalLabel">Update Post</h5>
                        
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -55,23 +55,23 @@
                          <div class="form-group">
                           <label>Title</label>
                           <input v-model="form.title" type="text" name="title"
-                            class="form-control" :class="{ 'is-invalid': form.errors.has('title') }">
+                            class="form-control" :class="{ 'is-invalid': form.errors.has('title') }" required>
                           <has-error :form="form" field="title"></has-error>
                         </div>
                         <div class="form-group">
                           <label>Description</label>
-                          <input v-model="form.description" type="text" name="description"
-                            class="form-control" :class="{ 'is-invalid': form.errors.has('description') }">
+                          <textarea v-model="form.description" type="text" name="description"
+                          class="form-control" :class="{ 'is-invalid': form.errors.has('description') }" required></textarea>
                           <has-error :form="form" field="description"></has-error>
                         </div>          
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button v-show="!editmode" type="submit"  class="btn btn-primary">
-                        Create
+                        Add
                         </button>
                         <button v-show="editmode" type="submit"  class="btn btn-success">
-                        update
+                        Update
                         </button>
                        
                       </div>

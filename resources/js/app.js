@@ -37,7 +37,7 @@ Vue.use(VueAxios, axios);
 // import Dashboard from './components/Dashboard.vue';
 // import Profile from './components/Profile.vue';
 import DashboardComponent from './components/DashboardComponent.vue';
-import ProfileComponent from './components/ProfileComponent.vue';
+import PostComponent from './components/PostComponent.vue';
 
 
 const routes = [
@@ -47,9 +47,9 @@ const routes = [
         component: DashboardComponent
     },
     {
-        name: 'profile',
-        path: '/profile',
-        component: ProfileComponent
+        name: 'post',
+        path: '/post',
+        component: PostComponent
     }
 ];
 

@@ -6,6 +6,12 @@ import VueRouter from 'vue-router';
 import moment from 'moment';
 import VueProgressBar from 'vue-progressbar'
 import Swal from 'sweetalert2'
+import Datepicker from 'vuejs-datepicker';
+import { Datetime } from 'vue-datetime'
+// You need a specific loader for CSS files
+import 'vue-datetime/dist/vue-datetime.css'
+ 
+Vue.use(Datetime);
 window.Swal =  Swal;
 
 

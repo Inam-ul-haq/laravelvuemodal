@@ -44,6 +44,7 @@ Vue.use(VueAxios, axios);
 // import Profile from './components/Profile.vue';
 import DashboardComponent from './components/DashboardComponent.vue';
 import PostComponent from './components/PostComponent.vue';
+import PassportComponent from './components/PassportComponent.vue';
 
 
 const routes = [
@@ -56,9 +57,28 @@ const routes = [
         name: 'post',
         path: '/post',
         component: PostComponent
+    },
+    {
+      name: 'apipassport',
+      path: '/apipassport',
+      component: PassportComponent
     }
 ];
 
+Vue.component(
+  'passport-clients',
+  require('./components/passport/Clients.vue').default
+);
+
+Vue.component(
+  'passport-authorized-clients',
+  require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+  'passport-personal-access-tokens',
+  require('./components/passport/PersonalAccessTokens.vue').default
+);
 
 const router = new VueRouter({
   mode: 'history',

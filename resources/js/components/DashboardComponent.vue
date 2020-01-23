@@ -20,6 +20,17 @@
    <option value="20">20</option>
     </select>
             </div>
+           
+            <div class="col-md-6 mt-5">
+<ul>
+<p v-for="i in num_items">
+{{message}}
+</p>
+<li v-for="(student,index) in students"> {{index}}-{{ student}}</li>
+
+</ul>
+
+            </div>
           
   
         
@@ -38,7 +49,10 @@ import { Datetime } from 'vue-datetime';
           },
           data(){
             return{
-                   customerName: "",
+                students:["Sanjay","Naveed","Inam"],
+                num_items:5,
+                message:'hello',
+                customerName: "",
                   date:'',
                   timestart:'',
                   timeend:''

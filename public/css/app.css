@@ -47279,6 +47279,7 @@ readers do not read off random characters that represent icons */
 }
 
 .router-link-exact-active {
+  background-color: #494e53;
   color: #b7b7b7;
 }
 

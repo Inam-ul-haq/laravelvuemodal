@@ -171,6 +171,13 @@
                   <p>Post</p>
                 </router-link>
               </li>
+             
+              <li class="nav-item">
+                <router-link to="/apipassport" class="nav-link">
+                <i class="fas fa-shield-alt"aria-hidden="true"></i>
+                  <p>ApiPassport</p>
+                </router-link>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
@@ -182,7 +189,6 @@
                </form>
                                    
               </li>
-            
             
             </ul>
           </li>

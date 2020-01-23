@@ -9,7 +9,12 @@ use App\Http\Resources\PostCollection;
 use App\Post;
 
 class PostController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+  
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -63,5 +68,9 @@ class PostController extends Controller
         $post->delete();
 
         return response()->json('successfully deleted');
+    }
+    public function view(){
+        dd(1234);
+
     }
 }

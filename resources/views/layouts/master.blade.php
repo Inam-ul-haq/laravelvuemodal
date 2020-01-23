@@ -179,6 +179,12 @@
                 </router-link>
               </li>
               <li class="nav-item">
+                <router-link to="/profile" class="nav-link">
+                <i class="fas fa-users"aria-hidden="true"></i>
+                 <p>Profile</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>                                  

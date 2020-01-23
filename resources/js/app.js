@@ -45,6 +45,7 @@ Vue.use(VueAxios, axios);
 import DashboardComponent from './components/DashboardComponent.vue';
 import PostComponent from './components/PostComponent.vue';
 import PassportComponent from './components/PassportComponent.vue';
+import ProfileComponent from './components/ProfileComponent.vue';
 
 
 const routes = [
@@ -62,6 +63,11 @@ const routes = [
       name: 'apipassport',
       path: '/apipassport',
       component: PassportComponent
+    },
+    {
+      name: 'profile',
+      path: '/profile',
+      component: ProfileComponent
     }
 ];
 

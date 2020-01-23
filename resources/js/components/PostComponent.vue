@@ -169,7 +169,7 @@ import { Form, HasError, AlertError } from 'vform';
                 confirmButtonText: 'Yes, delete it!'
                  }).then((result) => {
                    if (result.value) {
-   this.form.delete('api/posts/'+id).then(()=>{
+                  this.form.delete('api/posts/'+id).then(()=>{
                  Fire.$emit('aftercreated');
                             swal(
                         'Deleted!',

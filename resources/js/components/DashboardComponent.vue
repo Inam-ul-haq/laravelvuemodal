@@ -53,9 +53,9 @@ import { Datetime } from 'vue-datetime';
                 num_items:5,
                 message:'hello',
                 customerName: "",
-                  date:'',
-                  timestart:'',
-                  timeend:''
+                date:'',
+                timestart:'',
+                timeend:''
                   }
 
               },

@@ -1,7 +1,4 @@
 <?php
-
-// PostController.php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -33,8 +30,7 @@ class PostController extends Controller
     }
     public function index()
     {
-//        echo  "I am here";
-//      dd(Post::all());
+
         return new PostCollection(Post::all());
     }
 
@@ -71,6 +67,15 @@ class PostController extends Controller
     }
     public function view(){
         dd(1234);
+
+    }
+
+
+    public function updateProfile(Request $request){
+        if($request->photo){
+
+            $name = time().'.'. explode('/',explode(':',substr($request->photo),0,strpos($request->photo,';')))[1])[1]);
+        }
 
     }
 }

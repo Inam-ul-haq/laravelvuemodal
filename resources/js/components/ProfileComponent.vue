@@ -64,15 +64,23 @@
                         <has-error :form="form" field="email"></has-error>
                        </div>
                       </div>
-                                                         
-                                                       
+                                                        
+                       
+                                                    
                        <div class="form-group row">
-                        <label for="inputImage" class="col-sm-2 col-form-label">Image</label>
-                        <div class="col-sm-10">
-                          <input type="file"  @click="uploadFile" name="photo">
-
-                        </div>
+                      
+                          <div class="col-md-3" v-if="image">
+                              <img :src="image" class="img-responsive" height="70" width="90">
+                           </div>
+                          <div class="col-md-9">
+                              <input type="file" v-on:change="onImageChange" class="form-control">
+                          </div>
+                          <!-- <div class="col-md-3">
+                             <button class="btn btn-success btn-block" @click="uploadImage">Upload Image</button>
+                          </div> -->
+                                       
                       </div>
+                     
                        <div class="form-group row">
                       <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
                       <div class="col-sm-10">
@@ -123,15 +131,19 @@
 import Form from 'vform';
 
     export default {
+      props: {
+    value: File
+  },
       data(){
         return{
+          image:'',
           form: new Form({
 
               username:'',
               email:'',
               experience:'',
               skills:'',
-              photo:'',
+              
 
           })
 
@@ -143,28 +155,30 @@ import Form from 'vform';
             
         },
         methods:{
-          addprofile(){
-           this.form.post()
-           
-          },
-          uploadFile(e){
-            console.log(e)
-            let file = e.target.files[0];
-            
-            let reader = new FileReader();
-            
-            reader.onloadend = (file)=>{
-              this.form.photo = reader.result;
-               
+               onImageChange(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+            uploadImage(){
+                axios.post('/image/store',{image: this.image}).then(response => {
+                   if (response.data.success) {
+                     alert(response.data.success);
+                   }
+                });
             }
-              reader.readAsDataURL(file);
-           
-          //   let reader = new FileReader();
-          // reader.onload = $scope.imageIsLoaded;
-          // //console.log(element.target.files[0])
-          // reader.readAsDataURL(e.target.files[0]);
-            
-          }
         }
     }
 </script>
+
+
+

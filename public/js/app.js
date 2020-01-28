@@ -2433,39 +2433,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    value: File
+  },
   data: function data() {
     return {
+      image: '',
       form: new vform__WEBPACK_IMPORTED_MODULE_0___default.a({
         username: '',
         email: '',
         experience: '',
-        skills: '',
-        photo: ''
+        skills: ''
       })
     };
   },
   mounted: function mounted() {},
   methods: {
-    addprofile: function addprofile() {
-      this.form.post();
+    onImageChange: function onImageChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files[0]);
     },
-    uploadFile: function uploadFile(e) {
-      var _this = this;
-
-      console.log(e);
-      var file = e.target.files[0];
+    createImage: function createImage(file) {
       var reader = new FileReader();
+      var vm = this;
 
-      reader.onloadend = function (file) {
-        _this.form.photo = reader.result;
+      reader.onload = function (e) {
+        vm.image = e.target.result;
       };
 
-      reader.readAsDataURL(file); //   let reader = new FileReader();
-      // reader.onload = $scope.imageIsLoaded;
-      // //console.log(element.target.files[0])
-      // reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(file);
+    },
+    uploadImage: function uploadImage() {
+      axios.post('/image/store', {
+        image: this.image
+      }).then(function (response) {
+        if (response.data.success) {
+          alert(response.data.success);
+        }
+      });
     }
   }
 });
@@ -71023,19 +71039,24 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "form-group row" }, [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "col-sm-2 col-form-label",
-                                attrs: { for: "inputImage" }
-                              },
-                              [_vm._v("Image")]
-                            ),
+                            _vm.image
+                              ? _c("div", { staticClass: "col-md-3" }, [
+                                  _c("img", {
+                                    staticClass: "img-responsive",
+                                    attrs: {
+                                      src: _vm.image,
+                                      height: "70",
+                                      width: "90"
+                                    }
+                                  })
+                                ])
+                              : _vm._e(),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-10" }, [
+                            _c("div", { staticClass: "col-md-9" }, [
                               _c("input", {
-                                attrs: { type: "file", name: "photo" },
-                                on: { click: _vm.uploadFile }
+                                staticClass: "form-control",
+                                attrs: { type: "file" },
+                                on: { change: _vm.onImageChange }
                               })
                             ])
                           ]),

@@ -46,6 +46,7 @@ import DashboardComponent from './components/DashboardComponent.vue';
 import PostComponent from './components/PostComponent.vue';
 import PassportComponent from './components/PassportComponent.vue';
 import ProfileComponent from './components/ProfileComponent.vue';
+// import Pagination from './components/Pagination.vue';
 
 
 const routes = [
@@ -59,6 +60,12 @@ const routes = [
         path: '/post',
         component: PostComponent
     },
+  //   {
+  //     name: 'Pagination',
+  //     path: '/post',
+  //     component: Pagination
+  // },
+
     {
       name: 'apipassport',
       path: '/apipassport',

@@ -2198,6 +2198,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2441,6 +2442,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2448,12 +2453,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      image: '',
+      // image:'',
       form: new vform__WEBPACK_IMPORTED_MODULE_0___default.a({
         username: '',
         email: '',
         experience: '',
-        skills: ''
+        skills: '',
+        image: ''
       })
     };
   },
@@ -2469,19 +2475,18 @@ __webpack_require__.r(__webpack_exports__);
       var vm = this;
 
       reader.onload = function (e) {
-        vm.image = e.target.result;
+        vm.form.image = e.target.result;
       };
 
       reader.readAsDataURL(file);
     },
     uploadImage: function uploadImage() {
-      axios.post('/image/store', {
-        image: this.image
-      }).then(function (response) {
-        if (response.data.success) {
-          alert(response.data.success);
-        }
-      });
+      // axios.post('api/posts/image',{image: this.image}).then(response => {
+      //    if (response.data.success) {
+      //      alert(response.data.success);
+      //    }
+      // });
+      this.form.post('api/posts/image');
     }
   }
 });
@@ -70921,7 +70926,7 @@ var render = function() {
                           on: {
                             submit: function($event) {
                               $event.preventDefault()
-                              return _vm.addprofile($event)
+                              return _vm.uploadImage($event)
                             }
                           }
                         },
@@ -71039,12 +71044,12 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "form-group row" }, [
-                            _vm.image
+                            _vm.form.image
                               ? _c("div", { staticClass: "col-md-3" }, [
                                   _c("img", {
                                     staticClass: "img-responsive",
                                     attrs: {
-                                      src: _vm.image,
+                                      src: _vm.form.image,
                                       height: "70",
                                       width: "90"
                                     }
@@ -71052,13 +71057,25 @@ var render = function() {
                                 ])
                               : _vm._e(),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-md-9" }, [
-                              _c("input", {
-                                staticClass: "form-control",
-                                attrs: { type: "file" },
-                                on: { change: _vm.onImageChange }
-                              })
-                            ])
+                            _c(
+                              "div",
+                              { staticClass: "col-md-9" },
+                              [
+                                _c("input", {
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid": _vm.form.errors.has("image")
+                                  },
+                                  attrs: { type: "file", name: "image" },
+                                  on: { change: _vm.onImageChange }
+                                }),
+                                _vm._v(" "),
+                                _c("has-error", {
+                                  attrs: { form: _vm.form, field: "image" }
+                                })
+                              ],
+                              1
+                            )
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "form-group row" }, [
@@ -90373,6 +90390,7 @@ Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_8___default.a, axios__WEBPACK_IMPORTE
 
 
 
+ // import Pagination from './components/Pagination.vue';
 
 var routes = [{
   name: 'dashboard',
@@ -90382,7 +90400,12 @@ var routes = [{
   name: 'post',
   path: '/post',
   component: _components_PostComponent_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
-}, {
+}, //   {
+//     name: 'Pagination',
+//     path: '/post',
+//     component: Pagination
+// },
+{
   name: 'apipassport',
   path: '/apipassport',
   component: _components_PassportComponent_vue__WEBPACK_IMPORTED_MODULE_12__["default"]

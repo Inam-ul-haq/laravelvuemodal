@@ -35,6 +35,7 @@
                       <td><a href="#" v-on:click ="edit(post)" ><i class="fas fa-edit"></i></a>  <a href="#" v-on:click ="deletePost(post.id)"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>
                     
+                    
                   </tbody>
                 </table>
               </div>

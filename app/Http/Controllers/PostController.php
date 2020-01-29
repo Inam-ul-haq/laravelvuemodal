@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostCollection;
 use App\Post;
+use App\UserProfle;
+use Image;
+use DB;
 
 class PostController extends Controller
 {   
@@ -66,16 +69,37 @@ class PostController extends Controller
         return response()->json('successfully deleted');
     }
     public function view(){
-        dd(1234);
-
+        
     }
 
 
-    public function updateProfile(Request $request){
-        if($request->photo){
+    public function FileUpload(Request $request){
+     $this->validate($request,[
+            'image'=>'required',
+            // 'image.*' => '',
+            'username'=>'required',
+            'email'=>'required',
+            'skills'=>'required',
+            'experience'=>'required'
 
-            $name = time().'.'. explode('/',explode(':',substr($request->photo),0,strpos($request->photo,';')))[1])[1]);
-        }
+
+        ]);
+        
+            $image = $request->get('image');
+            
+            $imagename = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+            \Image::make($request->get('image'))->save(public_path('images/').$imagename);
+     
+            $username = $request->get('username');
+            $email = $request->get('email');
+            $skills = $request->get('skills');
+            $experience =$request->get('experience');
+            $image = $imagename;
+           
+         
+             DB::table('user_profiles')->insert(['username'=>$username,'email'=>$email,'skills'=>$skills,'experience'=>$experience,'image'=>$image]);
+           
+
 
     }
 }

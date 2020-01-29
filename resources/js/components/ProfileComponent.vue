@@ -47,7 +47,7 @@
          
 
                   <div class="tab-pane active" id="settings">
-                    <form @submit.prevent="addprofile">
+                    <form @submit.prevent="uploadImage">
                       <div class="form-group row">
                       <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
                       <div class="col-sm-10">
@@ -69,11 +69,15 @@
                                                     
                        <div class="form-group row">
                       
-                          <div class="col-md-3" v-if="image">
-                              <img :src="image" class="img-responsive" height="70" width="90">
+                          <div class="col-md-3" v-if="form.image">
+                              <img :src="form.image" class="img-responsive" height="70" width="90">
                            </div>
                           <div class="col-md-9">
-                              <input type="file" v-on:change="onImageChange" class="form-control">
+                              <!-- <input type="file" name="image" v-on:change="onImageChange" class="form-control"> -->
+                              <input type="file" name="image" v-on:change="onImageChange" 
+                          class="form-control" :class="{ 'is-invalid': form.errors.has('image') }">
+                        <has-error :form="form" field="image"></has-error>
+                            
                           </div>
                           <!-- <div class="col-md-3">
                              <button class="btn btn-success btn-block" @click="uploadImage">Upload Image</button>
@@ -136,13 +140,14 @@ import Form from 'vform';
   },
       data(){
         return{
-          image:'',
+            // image:'',
           form: new Form({
 
               username:'',
               email:'',
               experience:'',
               skills:'',
+              image:'',
               
 
           })
@@ -165,16 +170,19 @@ import Form from 'vform';
                 let reader = new FileReader();
                 let vm = this;
                 reader.onload = (e) => {
-                    vm.image = e.target.result;
+                    vm.form.image = e.target.result;
                 };
                 reader.readAsDataURL(file);
             },
             uploadImage(){
-                axios.post('/image/store',{image: this.image}).then(response => {
-                   if (response.data.success) {
-                     alert(response.data.success);
-                   }
-                });
+                // axios.post('api/posts/image',{image: this.image}).then(response => {
+                //    if (response.data.success) {
+                //      alert(response.data.success);
+                //    }
+                // });
+                
+
+                 this.form.post('api/posts/image');
             }
         }
     }

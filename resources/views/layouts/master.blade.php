@@ -185,6 +185,13 @@
                 </router-link>
               </li>
               <li class="nav-item">
+                <router-link to="/pdf" class="nav-link">
+                <i class="fas fa-file-pdf"aria-hidden="true"></i>
+              
+                 <p>Pdf</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>                                  

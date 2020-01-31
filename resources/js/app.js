@@ -10,6 +10,7 @@ import Datepicker from 'vuejs-datepicker';
 import { Datetime } from 'vue-datetime'
 // You need a specific loader for CSS files
 import 'vue-datetime/dist/vue-datetime.css'
+import jsPDF from 'jspdf'
  
 Vue.use(Datetime);
 window.Swal =  Swal;
@@ -46,6 +47,8 @@ import DashboardComponent from './components/DashboardComponent.vue';
 import PostComponent from './components/PostComponent.vue';
 import PassportComponent from './components/PassportComponent.vue';
 import ProfileComponent from './components/ProfileComponent.vue';
+import PdfComponent from './components/PdfComponent.vue';
+
 // import Pagination from './components/Pagination.vue';
 
 
@@ -75,7 +78,13 @@ const routes = [
       name: 'profile',
       path: '/profile',
       component: ProfileComponent
+    },
+    {
+      name:'pdf',
+      path:'/pdf',
+      component:PdfComponent
     }
+
 ];
 
 Vue.component(

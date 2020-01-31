@@ -180,8 +180,8 @@ import Form from 'vform';
                 //      alert(response.data.success);
                 //    }
                 // });
-                
-
+                              
+    
                  this.form.post('api/posts/image');
             }
         }

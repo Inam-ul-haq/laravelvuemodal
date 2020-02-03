@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostCollection;
 use App\Post;
-use App\UserProfle;
+// use App\Category;
 use Image;
 use DB;
 
@@ -32,7 +32,10 @@ class PostController extends Controller
         return response()->json('successfully added');
     }
     public function index()
-    {
+    {   
+        // $posts = Post::find(1);
+        //  $posts = $posts->categories;
+        // dd($posts);
 
         return new PostCollection(Post::all());
     }

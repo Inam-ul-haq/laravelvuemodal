@@ -2141,6 +2141,19 @@ __webpack_require__.r(__webpack_exports__);
         width: 170
       });
       doc.save("sample.pdf");
+    },
+    downloadWithCSS: function downloadWithCSS() {
+      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_0___default.a();
+      /** WITH CSS */
+
+      var canvasElement = document.createElement('canvas');
+      html2canvas__WEBPACK_IMPORTED_MODULE_1___default()(this.$refs.content, {
+        canvas: canvasElement
+      }).then(function (canvas) {
+        var img = canvas.toDataURL("image/jpeg", 0.8);
+        doc.addImage(img, 'JPEG', 20, 20);
+        doc.save("sample.pdf");
+      });
     }
   }
 });
